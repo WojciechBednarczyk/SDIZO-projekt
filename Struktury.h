@@ -19,13 +19,16 @@ public:
 };
 class Tablica :public Struktura
 {
+public:
 	Tablica();
-	void dodajPoczatek();
-	void dodajKoniec();
+	void wyswietl();
+	void dodaj(int wartosc); //dodawanie na koniec
+	void usun();			 //usuwanie z konca	
+	void dodajPoczatek(int wartosc);
 	void usunPoczatek();
-	void usunKoniec();
-	void wstaw(int index);
+	void wstaw(int wartosc, int index);
 	void usunIndex(int index);
+	//dopisac wyszukanie
 };
 class ListaDwukierunkowa :public Struktura
 {	
