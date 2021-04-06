@@ -32,20 +32,21 @@ public:
 };
 class ListaDwukierunkowa :public Struktura
 {	
+public:
+	//struct Element
+	//{
+	//	int dane;
+	//	Element* poprzedniElement, * nastepnyElement;
+	//	Element();
+	//};
+	//Element* glowa , * ogon;
 	ListaDwukierunkowa();
-	struct Element
-	{
-		int dane;
-		Element* poprzedniElement;
-		Element* nastepnyElement;
-		Element();
-	};
-
-	void dodajPoczatek();
-	void dodajKoniec();
+	void wyswietl();
+	void dodajPoczatek(int wartosc);
+	void dodaj(int wartosc);
 	void usunPoczatek();
-	void usunKoniec();
-	void wstaw(int index);
+	void usun();
+	void wstaw(int wartosc,int index);
 	void usunIndex(int index);
 };
 
@@ -55,9 +56,7 @@ class KopiecMaksymalny :public Struktura
 	struct Wezel
 	{
 		int wartosc;
-		Wezel* lewyPotomek;
-		Wezel* prawyPotomek;
-		Wezel* rodzic;
+		Wezel* lewyPotomek, *prawyPotomek, *rodzic;
 		Wezel();
 	};
 
@@ -69,9 +68,7 @@ class DrzewoRB :public Struktura
 	{
 		int wartosc;
 		int kolor; //0 - kolor czerwony, 1 - kolor czarny
-		Wezel* lewyPotomek;
-		Wezel* prawyPotomek;
-		Wezel* rodzic;
+		Wezel* lewyPotomek, *prawyPotomek, *rodzic;
 		Wezel();
 	};
 };

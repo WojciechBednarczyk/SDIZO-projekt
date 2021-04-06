@@ -8,10 +8,75 @@ void menuStart();
 void(*wskaznik_menu_start)() = menuStart;
 int wartosc_do_dodania;
 int indeks;
+int wybor_Operacji;
+void menuLista(ListaDwukierunkowa &lista)
+{
+	cout << "Wybrana struktura: Lista dwukierunkowa\n";
+	cout << "Wybierz operacje do wykonania:\n\n";
+	cout << "[1] Wyswietl liste \n";
+	cout << "[2] Dodaj liczbe na poczatku listy\n";
+	cout << "[3] Dodaj liczbe na koncu listy\n";
+	cout << "[4] Wstaw liczbe na dana pozycje w liscie\n";
+	cout << "[5] Usun liczbe na poczatku listy\n";
+	cout << "[6] Usun liczbe na koncu listy\n";
+	cout << "[7] Usun liczbe na danej pozycji\n";
+	cout << "[9] Powrot\n";
+	cout << "[0] Wyjscie\n";
+	cin >> wybor_Operacji;
+	switch (wybor_Operacji)
+	{
+	case 1:
+		lista.wyswietl();
+		menuLista(lista);
+		break;
+	case 2:
+		cout << "Podaj wartosc do dodania: ";
+		cin >> wartosc_do_dodania;
+		lista.dodajPoczatek(wartosc_do_dodania);
+		menuLista(lista);
+		break;
+	case 3:
+		cout << "Podaj wartosc do dodania: ";
+		cin >> wartosc_do_dodania;
+		lista.dodaj(wartosc_do_dodania);
+		menuLista(lista);
+		break;
+	case 4:
+		cout << "Podaj wartosc do wstawienia: ";
+		cin >> wartosc_do_dodania;
+		cout << "Podaj indeks gdzie wstawic wartosc: ";
+		cin >> indeks;
+		lista.wstaw(wartosc_do_dodania, indeks);
+		menuLista(lista);
+		break;
+	case 5:
+		lista.usunPoczatek();
+		menuLista(lista);
+		break;
+	case 6:
+		lista.usun();
+		menuLista(lista);
+		break;
+	case 7:
+		cout << "Podaj indeks gdzie usunac wartosc: ";
+		cin >> indeks;
+		lista.usunIndex(indeks);
+		menuLista(lista);
+		break;
+	case 9:
+		menuStart();
+		break;
+	case 0:
+		break;
+	default:
+		cout << "Wybrano zla opcje! Wybierz ponownie \n\n";
+		menuLista(lista);
+		break;
+	}
+}
 
 void menuTablica(Tablica& tablica)
 {
-	int wybor_Operacji;
 	cout << "Wybrana struktura: Tablica\n";
 	cout << "Wybierz operacje do wykonania:\n";
 	cout << endl;
@@ -35,7 +100,6 @@ void menuTablica(Tablica& tablica)
 		cout << "Podaj wartosc do dodania w tablicy: ";
 		cin >> wartosc_do_dodania;
 		tablica.dodajPoczatek(wartosc_do_dodania);
-		cout << "Dodano liczbe na poczatek tablicy\n\n";
 		menuTablica(tablica);
 		break;
 	case 3:
@@ -43,7 +107,6 @@ void menuTablica(Tablica& tablica)
 		cout << "Podaj wartosc do dodania w tablicy: ";
 		cin >> wartosc_do_dodania;
 		tablica.dodaj(wartosc_do_dodania);
-		cout << "Dodano liczbe na koniec tablicy\n\n";
 		menuTablica(tablica);
 		break;
 	case 4:
@@ -52,24 +115,20 @@ void menuTablica(Tablica& tablica)
 		cout << "Podaj indeks gdzie wstawic wartosc w tablicy: ";
 		cin >> indeks;
 		tablica.wstaw(wartosc_do_dodania, indeks);
-		cout << "Wstawiono liczbe do tablicy\n\n";
 		menuTablica(tablica);
 		break;
 	case 5:
 		tablica.usunPoczatek();
-		cout << "Usunieto liczbe z poczatku tablicy\n\n";
 		menuTablica(tablica);
 		break;
 	case 6:
 		tablica.usun();
-		cout << "Usunieto liczbe z konca tablicy\n\n";
 		menuTablica(tablica);
 		break;
 	case 7:
 		cout << "Podaj indeks liczby do usuniecia z tablicy: ";
 		cin >> indeks;
 		tablica.usunIndex(indeks);
-		cout << "Usunieto liczbe o podanym indeksie\n\n";
 		menuTablica(tablica);
 		break;
 	case 9:
@@ -78,9 +137,12 @@ void menuTablica(Tablica& tablica)
 	case 0:
 		break;
 	default:
+		cout << "Wybrano zla opcje! Wybierz ponownie\n\n";
+		menuTablica(tablica);
 		break;
 	}
 }
+
 
 void menuStart()
 {
@@ -105,7 +167,11 @@ void menuStart()
 		break;
 	}
 	case 2:
+	{
+		ListaDwukierunkowa lista;
+		menuLista(lista);
 		break;
+	}
 	case 3:
 		break;
 	case 4:

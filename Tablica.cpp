@@ -21,6 +21,7 @@ Tablica::Tablica()
 	}
 	plik.close();
 }
+
 void Tablica::wyswietl()
 {	
 	if (rozmiar == 0)
@@ -34,6 +35,7 @@ void Tablica::wyswietl()
 	}
 	
 }
+
 void Tablica::dodaj(int wartosc)
 {
 	tablica_pomocnicza = new int[rozmiar];
@@ -50,7 +52,9 @@ void Tablica::dodaj(int wartosc)
 	}
 	tablica[rozmiar - 1] = wartosc;
 	delete[] tablica_pomocnicza;
+	cout << "Dodano liczbe na koniec tablicy\n\n";
 }
+
 void Tablica::usun()
 {
 	rozmiar--;
@@ -67,6 +71,7 @@ void Tablica::usun()
 		tablica[i] = tablica_pomocnicza[i];
 	}
 	delete[] tablica_pomocnicza;
+	cout << "Usunieto liczbe z konca tablicy\n\n";
 }
 
 void Tablica::dodajPoczatek(int wartosc)
@@ -85,6 +90,7 @@ void Tablica::dodajPoczatek(int wartosc)
 		tablica[i] = tablica_pomocnicza[i - 1];
 	}
 	delete[] tablica_pomocnicza;
+	cout << "Dodano liczbe na poczatek tablicy\n\n";
 }
 
 void Tablica::usunPoczatek()
@@ -103,47 +109,64 @@ void Tablica::usunPoczatek()
 		tablica[i] = tablica_pomocnicza[i];
 	}
 	delete[] tablica_pomocnicza;
+	cout << "Usunieto liczbe z poczatku tablicy\n\n";
 }
 
-void Tablica::wstaw(int wartosc, int index)
+void Tablica::wstaw(int wartosc, int indeks)
 {
-	rozmiar++;
-	tablica_pomocnicza = new int[rozmiar];
-	for (int i = 0; i < index; i++)
+	if (indeks > rozmiar-1 || indeks<0)
 	{
-		tablica_pomocnicza[i] = tablica[i];
+		cout << "Podano nieprawidlowy indeks!\n\n";
 	}
-	tablica_pomocnicza[index] = wartosc;
-	for (int i = index + 1; i < rozmiar; i++)
+	else
 	{
-		tablica_pomocnicza[i] = tablica[i - 1];
+		rozmiar++;
+		tablica_pomocnicza = new int[rozmiar];
+		for (int i = 0; i < indeks; i++)
+		{
+			tablica_pomocnicza[i] = tablica[i];
+		}
+		tablica_pomocnicza[indeks] = wartosc;
+		for (int i = indeks + 1; i < rozmiar; i++)
+		{
+			tablica_pomocnicza[i] = tablica[i - 1];
+		}
+		delete[] tablica;
+		tablica = new int[rozmiar];
+		for (int i = 0; i < rozmiar; i++)
+		{
+			tablica[i] = tablica_pomocnicza[i];
+		}
+		delete[] tablica_pomocnicza;
+		cout << "Wstawiono liczbe do tablicy\n\n";
 	}
-	delete[] tablica;
-	tablica = new int[rozmiar];
-	for (int i = 0; i < rozmiar; i++)
-	{
-		tablica[i] = tablica_pomocnicza[i];
 	}
-	delete[] tablica_pomocnicza;
-}
 
-void Tablica::usunIndex(int index)
+void Tablica::usunIndex(int indeks)
 {
-	tablica_pomocnicza = new int[rozmiar - 1];
-	for (int i = 0; i < index; i++)
+	if (indeks > rozmiar-1 || indeks < 0)
 	{
-		tablica_pomocnicza[i] = tablica[i];
+		cout << "Nieprawidlowy indeks!\n\n";
 	}
-	for (int i = index + 1; i < rozmiar; i++)
+	else
 	{
-		tablica_pomocnicza[i - 1] = tablica[i];
+		tablica_pomocnicza = new int[rozmiar - 1];
+		for (int i = 0; i < indeks; i++)
+		{
+			tablica_pomocnicza[i] = tablica[i];
+		}
+		for (int i = indeks + 1; i < rozmiar; i++)
+		{
+			tablica_pomocnicza[i - 1] = tablica[i];
+		}
+		delete[] tablica;
+		rozmiar--;
+		tablica = new int[rozmiar];
+		for (int i = 0; i < rozmiar; i++)
+		{
+			tablica[i] = tablica_pomocnicza[i];
+		}
+		delete[] tablica_pomocnicza;
+		cout << "Usunieto liczbe o podanym indeksie\n\n";
 	}
-	delete[] tablica;
-	rozmiar--;
-	tablica = new int[rozmiar];
-	for (int i = 0; i < rozmiar; i++)
-	{
-		tablica[i] = tablica_pomocnicza[i];
 	}
-	delete[] tablica_pomocnicza;
-}
