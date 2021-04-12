@@ -21,19 +21,23 @@ Tablica::Tablica()
 	}
 	plik.close();
 }
-
+Tablica::~Tablica()
+{
+	delete[] tablica;
+	delete[] tablica_pomocnicza;
+}
 void Tablica::wyswietl()
-{	
+{
 	if (rozmiar == 0)
 		cout << "Tablica nie istnieje!\n";
 	else
 	{
 		for (int i = 0; i < rozmiar; i++)
 		{
-			cout << "Indeks tablicy[" << i << "]	Wartosc:" << tablica[i]<<endl;
+			cout << "Indeks tablicy[" << i << "]	Wartosc:" << tablica[i] << endl;
 		}
 	}
-	
+
 }
 
 void Tablica::dodaj(int wartosc)
@@ -46,7 +50,7 @@ void Tablica::dodaj(int wartosc)
 	delete[] tablica;
 	rozmiar++;
 	tablica = new int[rozmiar];
-	for (int i = 0; i < rozmiar-1; i++)
+	for (int i = 0; i < rozmiar - 1; i++)
 	{
 		tablica[i] = tablica_pomocnicza[i];
 	}
@@ -95,12 +99,12 @@ void Tablica::dodajPoczatek(int wartosc)
 
 void Tablica::usunPoczatek()
 {
-	
-	tablica_pomocnicza = new int[rozmiar-1];
+
+	tablica_pomocnicza = new int[rozmiar - 1];
 	rozmiar--;
 	for (int i = 0; i < rozmiar; i++)
 	{
-		tablica_pomocnicza[i] = tablica[i+1];
+		tablica_pomocnicza[i] = tablica[i + 1];
 	}
 	delete[] tablica;
 	tablica = new int[rozmiar];
@@ -114,7 +118,7 @@ void Tablica::usunPoczatek()
 
 void Tablica::wstaw(int wartosc, int indeks)
 {
-	if (indeks > rozmiar-1 || indeks<0)
+	if (indeks > rozmiar - 1 || indeks < 0)
 	{
 		cout << "Podano nieprawidlowy indeks!\n\n";
 	}
@@ -140,11 +144,11 @@ void Tablica::wstaw(int wartosc, int indeks)
 		delete[] tablica_pomocnicza;
 		cout << "Wstawiono liczbe do tablicy\n\n";
 	}
-	}
+}
 
 void Tablica::usunIndex(int indeks)
 {
-	if (indeks > rozmiar-1 || indeks < 0)
+	if (indeks > rozmiar - 1 || indeks < 0)
 	{
 		cout << "Nieprawidlowy indeks!\n\n";
 	}
@@ -169,4 +173,4 @@ void Tablica::usunIndex(int indeks)
 		delete[] tablica_pomocnicza;
 		cout << "Usunieto liczbe o podanym indeksie\n\n";
 	}
-	}
+}

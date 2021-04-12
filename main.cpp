@@ -9,7 +9,44 @@ void(*wskaznik_menu_start)() = menuStart;
 int wartosc_do_dodania;
 int indeks;
 int wybor_Operacji;
-void menuLista(ListaDwukierunkowa &lista)
+void menuKopiec(KopiecMaksymalny& kopiecMaksymalny)
+{
+	cout << "Wybrana struktura: Kopiec maksymalny\n";
+	cout << "Wybierz operacje do wykonania:\n\n";
+	cout << "[1] Wyswietl kopiec \n";
+	cout << "[2] Dodaj liczbe\n";
+	cout << "[3] Usun korzen\n";
+	cout << "[9] Powrot\n";
+	cout << "[0] Wyjscie\n";
+	cin >> wybor_Operacji;
+	switch (wybor_Operacji)
+	{
+	case 1:
+		kopiecMaksymalny.wyswietl();
+		menuKopiec(kopiecMaksymalny);
+		break;
+	case 2:
+		cout << "Podaj liczbe do dodania:";
+		cin >> wartosc_do_dodania;
+		kopiecMaksymalny.dodaj(wartosc_do_dodania);
+		menuKopiec(kopiecMaksymalny);
+		break;
+	case 3:
+		kopiecMaksymalny.usun();
+		menuKopiec(kopiecMaksymalny);
+		break;
+	case 9:
+		menuStart();
+		break;
+	case 0:
+		break;
+	default:
+		cout << "Wybrano zla opcje! Wybierz ponownie \n\n";
+		menuKopiec(kopiecMaksymalny);
+		break;
+	}
+}
+void menuLista(ListaDwukierunkowa& lista)
 {
 	cout << "Wybrana struktura: Lista dwukierunkowa\n";
 	cout << "Wybierz operacje do wykonania:\n\n";
@@ -173,7 +210,11 @@ void menuStart()
 		break;
 	}
 	case 3:
+	{
+		KopiecMaksymalny kopiecMaksymalny;
+		menuKopiec(kopiecMaksymalny);
 		break;
+	}
 	case 4:
 		break;
 

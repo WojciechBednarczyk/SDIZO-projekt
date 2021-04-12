@@ -142,7 +142,6 @@
     <ClCompile Include="KopiecMaksymalny.cpp" />
     <ClCompile Include="ListaDwukierunkowa.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="DrzewoRB.cpp" />
     <ClCompile Include="Tablica.cpp" />
   </ItemGroup>
